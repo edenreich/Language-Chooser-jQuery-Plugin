@@ -3,35 +3,31 @@
 	"use strict";
 
 	/**
-	 *	Count variable to check how many time we are in the loop /	
-	 *  how many selectors has instances of the LanguageChooser Object.
-	 *
+	 * Count variable to check how many time we are in the loop /	
+	 * how many selectors has instances of the LanguageChooser Object.
 	 */
 	var count = 1;
 
 	/**
-	 *	We store our languages collection.	
-	 *  
+	 * stores languages collection.	
 	 */
 	var languages = [];
 
 	/**
-	 *	We set all our methoods and properties inside 
-	 *  a LanguageChooser Object.	
+	 * sets all methoods and properties inside 
+	 * a LanguageChooser Object.	
 	 *
 	 */	
 	var LanguageChooser = {
 
 		/**
-		 *	Set property so we can reffer to our Language Chooser Element at any time.
-		 *
+		 * Sets property so we can reffer to our Language Chooser Element at any time.
 		 */	
 		languageChooser: {},
 
 		/**
-		 *	We initialize the object with this init method
-		 *  if the user called the plugin without selector / $.LanguageChooser().
-		 *	
+		 * initializes the object with this init method
+		 * if the user called the plugin without selector / $.LanguageChooser().
 		 */
 		init: function(options, element) {
 
@@ -42,18 +38,18 @@
 			languages = self.settings.languages;
 			
 			if(element !== undefined) {
-			// we check if the user called this init method with prepended selector
+			// we check if the user called this init method with prepended selector.
 				self.settings.class = self.settings.id = $(element).attr('class').split(' ')[0] || 
 														 $(element).attr('id').split(' ')[0];
 			}
 
 			if(self.settings.setSelector !== '') {
-			// we let the users to set their own element-selector-name
+			// lets the users to set their own element-selector-name.
 				self.settings.class = self.settings.id = self.settings.setSelector;
 			}
 			
 			if(($('.' + self.settings.class).length || $('#' + self.settings.id).length)) {
-			// we look for an element-selector-name that match our settings	
+			// we look for an element-selector-name that match our settings.
 				
 				self.languageChooser = ($('.' + this.settings.class).length) ? 
 										$('.' + this.settings.class) : ('#' + this.settings.id);
@@ -75,14 +71,14 @@
 				self.languageChooser.find('li:first-child').on('click', self.changeVisibility );
 				
 			} else {
-			// otherwise we create a fixed element to the top right corner of the screen
+			// otherwise we create a fixed element to the top right corner of the screen.
 				self.languageChooser = self.createElement();
 				
 				self.settings.position = self.settings.position || 'fixed';
 
 				self.setLanguages(languages)
 					.positioning(self.settings)
-					.attachTo(); // by default attaching to body
+					.attachTo(); // by default attaching to body.
 
 				self.languageChooser.on('click', this.changeVisibility );
 			}
@@ -101,10 +97,9 @@
 
 
 		/**
-		 *	Creating the Language Chooser Element if the 
-		 *  user did not specify any selector or if the default
-		 *	language-chooser selector name is not located in the DOM.
-		 *	
+		 * Creating the Language Chooser Element if the 
+		 * user did not specify any selector or if the default
+		 * language-chooser selector name is not located in the DOM.	
 		 */
 		createElement: function() {
 
@@ -116,9 +111,8 @@
 		},
 
 		/**
-		 *	Adding the languages that the user want to be
-		 *  as an option in the Language Chooser Menu.
-		 *	
+		 * Adding the languages that the user want to be
+		 * as an option in the Language Chooser Menu.	
 		 */
 		setLanguages: function(collection) {
 			
@@ -202,9 +196,8 @@
 		},
 
 		/**
-		 *	Positioning the Language Chooser on the choosen
-		 *  place in the DOM.
-		 *	
+		 * Positioning the Language Chooser on the choosen
+		 * place in the DOM.
 		 */
 		positioning: function(settings) {
 
@@ -238,9 +231,8 @@
 		},
 
 		/**
-		 *	Prepend the Language Chooser to the body by default
-		 *  or to where the user set on the settings.
-		 *	
+		 * Prepend the Language Chooser to the body by default
+		 * or to where the user set on the settings.	
 		 */
 		attachTo: function(element) {
 			var relativeElement = 'body';
@@ -253,9 +245,8 @@
 		},
 
 		/**
-		 *	Allow us to toggle the visiblity of the
-		 *  Language Chooser.
-		 *	
+		 * Allow us to toggle the visiblity of the
+		 * Language Chooser.
 		 */	
 		changeVisibility: function() {
 			
@@ -263,8 +254,7 @@
 		},
 
 		/**
-		 *	We style our Language Chooser.
-		 *  
+		 * We style our Language Chooser.
 		 */
 		generalStyle: function(element) {
 
@@ -329,9 +319,8 @@
 		},
 
 		/**
-		 *	Just to make sure we get the folder path 
-		 * 	as we expected.
-		 *  
+		 * Just to make sure we get the folder path 
+		 * as we expected.
 		 */
 		formatFolderPath: function(path) {
 
@@ -340,9 +329,8 @@
 		},
 
 		/**
-		 *	We check if the user gave any path
-		 *  for his own flags icons. 
-		 * 	
+		 * checks if the user gave any path
+		 * for his own flags icons. 
 		 */
 		folderIconPathIsSet: function() {
 
@@ -350,9 +338,8 @@
 		},
 
 		/**
-		 *	We set the session with the choosen session
-		 *  key in the cookie.
-		 * 	
+		 * sets the session with the choosen session
+		 * key in the cookie.	
 		 */
 		setTheCookie: function(event) {
 			
@@ -366,9 +353,8 @@
 		},
 
 		/**
-		 *	Helper function to check if we are dealing
-		 *  with object only.
-		 * 	
+		 * Helper function to check if we are dealing
+		 * with object only.	
 		 */
 		isObject: function(collection) {
 
@@ -376,14 +362,17 @@
 		},
 
 		/**
-		 *	Helper function to check if we are dealing
-		 *  with array only.
-		 * 	
+		 * Helper function to check if we are dealing
+		 * with array only.	
 		 */
 		isArray: function(collection) {
 
 			return (collection instanceof Array && Array.isArray(collection)) ? collection : false;
 		},
+		
+		/**
+		 * Retrieves the cookie that was set earlier.	
+		 */
 		getCookie: function(cname) {
 		    
 		    var name = cname + "=";
@@ -402,9 +391,8 @@
 	};
 	
 	/**
-	 *	We allow the users to call that plugin 
-	 *  without neseccerly using a selector.
-	 *	
+	 * allows the users to call that plugin 
+	 * without neseccerly using a selector.	
 	 */	
 	$.LanguageChooser = function(options) {
 		
@@ -417,9 +405,8 @@
 	};
 
 	/**
-	 *	If they do wants to use a selector we are
-	 *  not going to prevent that.
-	 *
+	 * If they do wants to use a selector we are
+	 * not going to prevent that.
 	 */
 	$.fn.LanguageChooser = function(options) {
 		
@@ -431,9 +418,8 @@
 	};
 
 	/**
-	 *	We store the default settings we wants 
-	 *  the language chooser to look like.
-	 *
+	 * stores the default settings we wants 
+	 * the language chooser to look like.
 	 */
 	$.fn.LanguageChooser.settings = {
 		'class': 'language-chooser',
